@@ -36,6 +36,11 @@ class Odds
         $this->roll = rand(1, $this->getLimit());
     }
 
+    public function getRoll()
+    {
+        return $this->roll;
+    }
+
     public function getLimit()
     {
         $values = array_values($this->odds);
