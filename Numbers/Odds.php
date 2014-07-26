@@ -1,5 +1,5 @@
 <?php
-namespace Futilities;
+namespace Futilities\Numbers;
 
 class Odds
 {
