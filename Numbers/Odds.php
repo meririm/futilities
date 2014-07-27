@@ -10,14 +10,15 @@ class Odds
     const EPIC = 1;
     const MIRACULOUS = 0;
 
-    protected $odds;
-    protected $roll;
-    protected $rarity;
+    public $odds;
+    public $roll;
+    public $rarity;
 
     function __construct()
     {
         $this->formatOdds();
         $this->setRoll();
+        $this->calculateRarity();
     }
 
     protected function formatOdds()
@@ -26,10 +27,6 @@ class Odds
         $this->odds = $reflection->getConstants();
     }
 
-    public function getOdds()
-    {
-        return $this->odds;
-    }
 
     protected function setRoll()
     {
@@ -40,11 +37,6 @@ class Odds
     {
         $values = array_values($this->odds);
         return array_sum($values);
-    }
-
-    public function getRarity()
-    {
-        return ($this->rarity) ? $this->rarity : $this->calculateRarity();
     }
 
     protected function calculateRarity()
@@ -91,7 +83,6 @@ class Odds
 
     protected function is($parentMethod)
     {
-        $compareTo = strtoupper(substr($parentMethod, 2));
-        return $compareTo == $this->getRarity();
+        return strtoupper(substr($parentMethod, 2)) == $this->getRarity();
     }
 }
